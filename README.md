@@ -1,1 +1,1 @@
-node-dull-project
+node-full-project
