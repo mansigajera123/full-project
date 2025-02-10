@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="/styles/detailview.css" />
+    <link rel="stylesheet" href="/styles/index.css" />
+
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.8);
+        padding-top: 60px;
+      }
+      .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+      }
+      .modal-content img {
+        width: 100%;
+        height: auto;
+      }
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      .close:hover,
+      .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1>ShopEase</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="/about-us">About Us</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="product-detail">
+      <div class="product-images">
+        <img
+          src="<%= post.image %>"
+          alt="<%= post.title %>"
+          class="main-image"
+        />
+
+        <div class="thumbnail-images">
+          <% post.thumbnailImages.forEach(function(thumb) { %>
+          <img
+            src="<%= thumb %>"
+            alt="<%= post.title %>"
+            class="thumbnail"
+            onclick="openModal('<%= thumb %>')"
+          />
+          <% }) %>
+        </div>
+      </div>
+
+      <div class="product-info">
+        <h1 class="product-title"><%= post.title %></h1>
+        <p class="product-price">$<%= post.price %></p>
+
+        <p class="product-description"><%= post.description %></p>
+      </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="modalImage" />
+    </div>
+
+    <script>
+      function openModal(imagePath) {
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImage");
+        modal.style.display = "block";
+        modalImg.src = imagePath;
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("imageModal");
+        modal.style.display = "none";
+      }
+    </script>
+  </body>
+</html>

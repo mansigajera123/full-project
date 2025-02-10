@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts</title>
+    <link rel="stylesheet" href="/styles/styles.css" />
+  </head>
+  <body>
+    <div class="products-list">
+      <% posts.forEach(post => { %>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="<%= post.image %>" alt="<%= post.title %>" />
+        </div>
+
+        <div class="product-details">
+          <h2 class="product-title"><%= post.title %></h2>
+          <p class="product-price">$<%= post.price %></p>
+          <p class="product-description"><%= post.description %></p>
+          <a href="/posts/<%= post._id %>" class="buy-now-button"
+            >View Details</a
+          >
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>

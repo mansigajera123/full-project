@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= category %> Posts</title>
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/index.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <header>
+      <div class="logo">
+        <h1>ShopEase</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="/about-us">About Us</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Search Form -->
+    <div class="search-container">
+      <form action="/category/<%= category %>" method="get">
+        <input
+          type="text"
+          name="search"
+          placeholder="Search posts..."
+          value="<%= searchQuery %>"
+        />
+
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+    <h1><%= category %> Category</h1>
+
+    <div class="products-list">
+      <% posts.forEach(post => { %>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="<%= post.image %>" alt="<%= post.title %>" />
+        </div>
+
+        <div class="product-details">
+          <h2 class="product-title"><%= post.title %></h2>
+          <p class="product-price">$<%= post.price %></p>
+          <p class="product-description"><%= post.description %></p>
+          <a href="/posts/<%= post._id %>" class="buy-now-button">Details</a>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>
